@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #ce8ac499;
+
+    /* zentriert den Chat */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* gesamte Chatbox */
+#chatContainer {
+    width: 70%;
+    max-width: 900px;
+    height: 80vh;
+    background: white;
+    border: 6px solid black;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nachrichtenbereich */
+#chatBox {
+    flex: 1;
+    overflow-y: scroll;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* einzelne Nachricht */
+.message {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    word-break: break-word;
+
+    color: red; /* alles rot */
+}
+
+/* Eingabe unten */
+#chatForm {
+    display: flex;
+    border-top: 6px solid black;
+}
+
+/* Textfeld */
+#messageInput {
+    flex: 1;
+    font-size: 36px;
+    font-weight: bold;
+    padding: 20px;
+    border: none;
+    outline: none;
+    font-family: Arial, sans-serif;
+}
+
+/* Button */
+button {
+    width: 180px;
+    font-size: 28px;
+    font-weight: bold;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
