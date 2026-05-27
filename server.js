@@ -34,10 +34,11 @@ io.on("connection", socket => {
         const messages = loadMessages();
 
         const message = {
-            name: data.name,
-            text: data.text,
-            time: new Date().toISOString()
-        };
+    name: data.name,
+    text: data.text,
+    color: data.color,
+    time: new Date().toISOString()
+};
 
         messages.push(message);
         saveMessages(messages);

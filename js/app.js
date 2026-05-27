@@ -1,21 +1,36 @@
 const socket = io();
 
+const sisterSelect = document.getElementById("sisterSelect");
+const chatContainer = document.getElementById("chatContainer");
+
 const form = document.getElementById("chatForm");
 const input = document.getElementById("messageInput");
 const messages = document.getElementById("messages");
 const chatBox = document.getElementById("chatBox");
 
-const username = prompt("Welche Schwester / welcher Ort bist du?") || "Anonym";
+let username = "";
+let userColor = "black";
 
 function showMessage(data) {
     const message = document.createElement("div");
     message.classList.add("message");
 
     message.innerText = data.name + ": " + data.text;
+    message.style.color = data.color || "black";
 
     messages.appendChild(message);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
+
+document.querySelectorAll("#sisterSelect button").forEach(function(button) {
+    button.addEventListener("click", function() {
+        username = button.dataset.name;
+        userColor = button.dataset.color;
+
+        sisterSelect.style.display = "none";
+        chatContainer.style.display = "flex";
+    });
+});
 
 socket.on("chat history", function(history) {
     history.forEach(function(data) {
@@ -28,10 +43,12 @@ form.addEventListener("submit", function(event) {
 
     const text = input.value.trim();
     if (text === "") return;
+    if (username === "") return;
 
     socket.emit("chat message", {
         name: username,
-        text: text
+        text: text,
+        color: userColor
     });
 
     input.value = "";
