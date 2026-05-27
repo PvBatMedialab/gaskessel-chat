@@ -7,11 +7,26 @@ const chatBox = document.getElementById("chatBox");
 
 const username = prompt("Welche Schwester / welcher Ort bist du?") || "Anonym";
 
+function showMessage(data) {
+    const message = document.createElement("div");
+    message.classList.add("message");
+
+    message.innerText = data.name + ": " + data.text;
+
+    messages.appendChild(message);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+socket.on("chat history", function(history) {
+    history.forEach(function(data) {
+        showMessage(data);
+    });
+});
+
 form.addEventListener("submit", function(event) {
     event.preventDefault();
 
     const text = input.value.trim();
-
     if (text === "") return;
 
     socket.emit("chat message", {
@@ -23,13 +38,5 @@ form.addEventListener("submit", function(event) {
 });
 
 socket.on("chat message", function(data) {
-
-    const message = document.createElement("div");
-    message.classList.add("message");
-
-    message.innerText = data.name + ": " + data.text;
-
-    messages.appendChild(message);
-
-    chatBox.scrollTop = chatBox.scrollHeight;
+    showMessage(data);
 });
