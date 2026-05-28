@@ -2,33 +2,27 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Chatroom</title>
+    <title>Portale</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-<div id="sisterSelect">
-    <h1>Welche Schwester bist du?</h1>
-    <button data-name="Kohlekessel" data-color="red">Gaskessel</button>
-    <button data-name="Bremgarten" data-color="blue">Bremgarten</button>
-    <button data-name="StGallen" data-color="green">StGallen</button>
-    <button data-name="Alschwil" data-color="purple">Alschwil</button>
-    <button data-name="Oberdiessbach" data-color="orange">Oberdiessbach</button>
-</div>
-<div id="chatContainer" style="display:none;">
+<body class="portalPage">
 
-    <div id="chatBox">
-        <div id="messages"></div>
-    </div>
+<div id="portalContainer">
 
-    <form id="chatForm">
-        <input id="messageInput" type="text" placeholder="Nachricht schreiben...">
-        <button>Senden</button>
-    </form>
+    <a href="room1.html" class="portal">
+        SCHWESTER 1
+    </a>
+
+    <a href="room2.html" class="portal">
+        SCHWESTER 2
+    </a>
+
+    <a href="room3.html" class="portal">
+        SCHWESTER 3
+    </a>
 
 </div>
-<script src="/socket.io/socket.io.js"></script>
-<script src="js/app.js"></script>
 
 </body>
 </html>

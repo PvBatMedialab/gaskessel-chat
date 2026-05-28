@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatroom 1</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div id="topMenu">
+
+    <!-- Kategorie 1 -->
+
+    <div class="menuCategory">
+
+        <div class="menuButton">
+            Hallo Schwester
+        </div>
+
+        <div class="menuContent">
+            Willkommen im Portal.
+            Dieser Raum speichert Nachrichten,
+            Erinnerungen und Fragmente.
+        </div>
+
+    </div>
+
+    <!-- Kategorie 2 -->
+
+    <div class="menuCategory">
+
+        <div class="menuButton">
+            Fragenkatalog
+        </div>
+
+        <div class="menuContent">
+            - Wo bist du?<br>
+            - Wer antwortet?<br>
+            - Welche Schwester spricht?<br>
+            - Was fehlt?
+        </div>
+
+    </div>
+
+    <!-- Kategorie 3 -->
+
+    <div class="menuCategory">
+
+        <div class="menuButton">
+            AGB
+        </div>
+
+        <div class="menuContent">
+            Alle Nachrichten bleiben im System.
+            Der Chat erinnert sich.
+        </div>
+
+    </div>
+
+</div>
+
+<div id="chatContainer">
+
+    <div id="chatBox">
+        <div id="messages"></div>
+    </div>
+
+    <form id="chatForm">
+        <input id="messageInput" type="text" placeholder="Nachricht schreiben...">
+       <button type="submit">
+    SEND
+</button>
+    </form>
+
+</div>
+
+<script>
+window.CHATROOM = "PORTAL 1";
+</script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

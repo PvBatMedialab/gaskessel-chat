@@ -1,59 +1,74 @@
-const socket = io();
-
-const sisterSelect = document.getElementById("sisterSelect");
-const chatContainer = document.getElementById("chatContainer");
-
 const form = document.getElementById("chatForm");
 const input = document.getElementById("messageInput");
-const messages = document.getElementById("messages");
 const chatBox = document.getElementById("chatBox");
 
-let username = "";
-let userColor = "black";
-
-function showMessage(data) {
-    const message = document.createElement("div");
-    message.classList.add("message");
-
-    message.innerText = data.name + ": " + data.text;
-    message.style.color = data.color || "black";
-
-    messages.appendChild(message);
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-document.querySelectorAll("#sisterSelect button").forEach(function(button) {
-    button.addEventListener("click", function() {
-        username = button.dataset.name;
-        userColor = button.dataset.color;
-
-        sisterSelect.style.display = "none";
-        chatContainer.style.display = "flex";
-    });
-});
-
-socket.on("chat history", function(history) {
-    history.forEach(function(data) {
-        showMessage(data);
-    });
-});
-
 form.addEventListener("submit", function(event) {
+
+    /* VERHINDERT NEULADEN */
+
     event.preventDefault();
 
-    const text = input.value.trim();
-    if (text === "") return;
-    if (username === "") return;
+    const messageText = input.value;
 
-    socket.emit("chat message", {
-        name: username,
-        text: text,
-        color: userColor
-    });
+    if (messageText.trim() === "") return;
+
+    /* neue Nachricht erstellen */
+
+    const message = document.createElement("div");
+
+    message.classList.add("message");
+
+    message.innerHTML =
+    "<span class='sender'>Gaskessel:</span> " +
+    messageText;
+
+    /* Nachricht in Chat einsetzen */
+
+    chatBox.appendChild(message);
+
+    /* Input leeren */
 
     input.value = "";
+
+    /* automatisch nach unten scrollen */
+
+    chatBox.scrollTop = chatBox.scrollHeight;
 });
 
-socket.on("chat message", function(data) {
-    showMessage(data);
+
+const menuButtons = document.querySelectorAll(".menuButton");
+
+menuButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        const content =
+            button.nextElementSibling;
+
+        /* andere schließen */
+
+        document
+            .querySelectorAll(".menuContent")
+            .forEach(function(item) {
+
+                if (item !== content) {
+                    item.style.display = "none";
+                }
+
+            });
+
+        /* aktuelles öffnen */
+
+        if (content.style.display === "block") {
+
+            content.style.display = "none";
+
+        } else {
+
+            content.style.display = "block";
+
+        }
+
+    });
+
 });
