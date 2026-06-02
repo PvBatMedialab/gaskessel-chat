@@ -18,8 +18,13 @@ form.addEventListener("submit", function(event) {
 
     message.classList.add("message");
 
-    message.innerHTML =
-    "<span class='sender'>Gaskessel:</span> " +
+  const senderName =
+    localStorage.getItem("username") || "Unbekannt";
+
+message.innerHTML =
+    "<span class='sender'>" +
+    senderName +
+    ":</span> " +
     messageText;
 
     /* Nachricht in Chat einsetzen */
