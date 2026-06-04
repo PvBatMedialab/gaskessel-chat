@@ -58,5 +58,19 @@
     "text": "heyyjoo",
     "color": "red",
     "time": "2026-06-04T11:29:30.726Z"
+  },
+  {
+    "room": "PORTAL 1",
+    "name": "Schwester 1",
+    "text": "hallo",
+    "color": "red",
+    "time": "2026-06-04T11:33:56.715Z"
+  },
+  {
+    "room": "PORTAL 1",
+    "name": "Gaskessel",
+    "text": "Hallo Schwester 1",
+    "color": "red",
+    "time": "2026-06-04T11:36:24.373Z"
   }
 ]
