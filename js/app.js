@@ -1,68 +1,88 @@
+const socket = io();
+
 const form = document.getElementById("chatForm");
 const input = document.getElementById("messageInput");
 const chatBox = document.getElementById("chatBox");
 
-form.addEventListener("submit", function(event) {
+function addMessage(message) {
 
-    /* VERHINDERT NEULADEN */
+    const div = document.createElement("div");
+
+    div.classList.add("message");
+
+    div.innerHTML =
+        "<span class='sender'>" +
+        message.name +
+        ":</span> " +
+        message.text;
+
+    chatBox.appendChild(div);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+/* Alte Nachrichten laden */
+
+socket.on("chat history", messages => {
+
+    chatBox.innerHTML = "";
+
+    messages.forEach(message => {
+        addMessage(message);
+    });
+
+});
+
+/* Neue Nachrichten empfangen */
+
+socket.on("chat message", message => {
+
+    addMessage(message);
+
+});
+
+/* Nachricht senden */
+
+form.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
-    const messageText = input.value;
+    const text = input.value.trim();
 
-    if (messageText.trim() === "") return;
+    if (!text) return;
 
-    /* neue Nachricht erstellen */
+    const senderName =
+        localStorage.getItem("username") || "Unbekannt";
 
-    const message = document.createElement("div");
-
-    message.classList.add("message");
-
-  const senderName =
-    localStorage.getItem("username") || "Unbekannt";
-
-message.innerHTML =
-    "<span class='sender'>" +
-    senderName +
-    ":</span> " +
-    messageText;
-
-    /* Nachricht in Chat einsetzen */
-
-    chatBox.appendChild(message);
-
-    /* Input leeren */
+    socket.emit("chat message", {
+        name: senderName,
+        text: text,
+        color: "red"
+    });
 
     input.value = "";
 
-    /* automatisch nach unten scrollen */
-
-    chatBox.scrollTop = chatBox.scrollHeight;
 });
 
+/* Menü */
 
 const menuButtons = document.querySelectorAll(".menuButton");
 
-menuButtons.forEach(function(button) {
+menuButtons.forEach(button => {
 
     button.addEventListener("click", function() {
 
-        const content =
-            button.nextElementSibling;
-
-        /* andere schließen */
+        const content = button.nextElementSibling;
 
         document
             .querySelectorAll(".menuContent")
-            .forEach(function(item) {
+            .forEach(item => {
 
                 if (item !== content) {
                     item.style.display = "none";
                 }
 
             });
-
-        /* aktuelles öffnen */
 
         if (content.style.display === "block") {
 
@@ -77,3 +97,5 @@ menuButtons.forEach(function(button) {
     });
 
 });
+
+
