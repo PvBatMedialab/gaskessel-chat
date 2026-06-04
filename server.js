@@ -28,12 +28,24 @@ function saveMessages(messages) {
 }
 
 io.on("connection", socket => {
-    socket.emit("chat history", loadMessages());
+    socket.on("join room", room => {
+
+    const messages = loadMessages();
+
+    const roomMessages = messages.filter(
+        message => message.room === room
+    );
+
+    socket.emit("chat history", roomMessages);
+
+});
 
     socket.on("chat message", data => {
+          console.log("NACHRICHT ANGEKOMMEN:", data);
         const messages = loadMessages();
 
-        const message = {
+const message = {
+    room: data.room,
     name: data.name,
     text: data.text,
     color: data.color,

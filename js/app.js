@@ -1,5 +1,14 @@
 const socket = io();
 
+socket.on("connect", () => {
+
+    socket.emit(
+        "join room",
+        window.CHATROOM
+    );
+
+});
+
 const form = document.getElementById("chatForm");
 const input = document.getElementById("messageInput");
 const chatBox = document.getElementById("chatBox");
@@ -37,7 +46,11 @@ socket.on("chat history", messages => {
 
 socket.on("chat message", message => {
 
-    addMessage(message);
+    if (message.room === window.CHATROOM) {
+
+        addMessage(message);
+
+    }
 
 });
 
@@ -54,11 +67,14 @@ form.addEventListener("submit", function(event) {
     const senderName =
         localStorage.getItem("username") || "Unbekannt";
 
-    socket.emit("chat message", {
-        name: senderName,
-        text: text,
-        color: "red"
-    });
+ console.log("ROOM:", window.CHATROOM);
+ 
+ socket.emit("chat message", {
+    room: window.CHATROOM,
+    name: senderName,
+    text: text,
+    color: "red"
+});
 
     input.value = "";
 
