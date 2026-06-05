@@ -8,58 +8,55 @@
 
 <body>
 
-    <div id="topMenu">
-
-    <!-- Kategorie 1 -->
+<div id="topMenu">
 
     <div class="menuCategory">
-
         <div class="menuButton">
             Hallo Schwester
         </div>
 
         <div class="menuContent">
-            Willkommen im Portal.
-            Dieser Raum speichert Nachrichten,
-            Erinnerungen und Fragmente.
+            Hallo du!<br><br>
+            
+            Du befindest dich hier im Chatraum.<br>
+            Wir haben deine verschwundene Schwester wiedergefunden.<br>
+            Du hast nun die Möglichkeit, sie über den Chat kennenzulernen und dich mit ihr auszutauschen.<br>
+            Erzählt euch, was ihr alles verpasst habt. Erfindet, was ihr wollt, oder schreibt euch persönliche Erinnerungen.<br>
+            So schreibt ihr gemeinsam eine Biografie der verschwundenen Schwester.
         </div>
-
     </div>
 
-    <!-- Kategorie 2 -->
-
     <div class="menuCategory">
-
         <div class="menuButton">
             Fragenkatalog
         </div>
 
         <div class="menuContent">
-            - Wo bist du?<br>
-            - Wer antwortet?<br>
-            - Welche Schwester spricht?<br>
-            - Was fehlt?
-        </div>
+             Blick nach vorne.<br><br>
 
+            Was beschäftigt dich, wenn du an deine Zukunft denkst?<br>
+            Vor was hättest du gerne weniger Angst?<br>
+            Wie willst du mal werden?<br>
+            Welche Worte würdest du gerne noch hören?<br>
+            Wo wünschst du dir mehr Freiheiten?<br>
+            Was willst du beibehalten?<br>
+            Was willst du in Zukunft anders machen?<br>
+            Was wird dir fehlen?
+        </div>
     </div>
 
-    <!-- Kategorie 3 -->
-
     <div class="menuCategory">
-
         <div class="menuButton">
             AGB
         </div>
 
         <div class="menuContent">
-            Alle Nachrichten bleiben im System.
+            Alle Nachrichten bleiben im System.<br><br>
             Der Chat erinnert sich.
         </div>
-
     </div>
 
 </div>
-
 
 <div id="chatContainer">
 
@@ -68,17 +65,21 @@
     </div>
 
     <form id="chatForm">
-        <input id="messageInput" type="text" placeholder="Nachricht schreiben...">
-       <button type="submit">
-    SEND
-</button>
+        <input
+            id="messageInput"
+            type="text"
+            placeholder="Nachricht schreiben..."
+        >
+
+        <button type="submit">
+            SEND
+        </button>
     </form>
 
 </div>
 
 <script>
 window.CHATROOM = "SCHWESTER3";
-window.USERNAME = "Schwester 3";
 </script>
 
 <script src="/socket.io/socket.io.js"></script>
