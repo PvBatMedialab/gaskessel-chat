@@ -1,12 +1,7 @@
 const socket = io();
 
 socket.on("connect", () => {
-
-    socket.emit(
-        "join room",
-        window.CHATROOM
-    );
-
+    socket.emit("join room", window.CHATROOM);
 });
 
 const form = document.getElementById("chatForm");
@@ -14,7 +9,6 @@ const input = document.getElementById("messageInput");
 const chatBox = document.getElementById("chatBox");
 
 function addMessage(message) {
-
     const div = document.createElement("div");
 
     div.classList.add("message");
@@ -30,6 +24,7 @@ function addMessage(message) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
+
 /* Alte Nachrichten laden */
 
 socket.on("chat history", messages => {
@@ -42,17 +37,17 @@ socket.on("chat history", messages => {
 
 });
 
+
 /* Neue Nachrichten empfangen */
 
 socket.on("chat message", message => {
 
     if (message.room === window.CHATROOM) {
-
         addMessage(message);
-
     }
 
 });
+
 
 /* Nachricht senden */
 
@@ -67,18 +62,19 @@ form.addEventListener("submit", function(event) {
     const senderName =
         localStorage.getItem("username") || "Unbekannt";
 
- console.log("ROOM:", window.CHATROOM);
- 
- socket.emit("chat message", {
-    room: window.CHATROOM,
-    name: senderName,
-    text: text,
-    color: "red"
-});
+    console.log("ROOM:", window.CHATROOM);
+
+    socket.emit("chat message", {
+        room: window.CHATROOM,
+        name: senderName,
+        text: text,
+        color: "red"
+    });
 
     input.value = "";
 
 });
+
 
 /* Menü */
 
@@ -101,17 +97,12 @@ menuButtons.forEach(button => {
             });
 
         if (content.style.display === "block") {
-
             content.style.display = "none";
-
         } else {
-
             content.style.display = "block";
-
         }
 
     });
 
 });
-
 
