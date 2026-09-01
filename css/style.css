@@ -213,3 +213,219 @@ button {
 
     line-height: 1.4;
 }
+
+/* ================================
+   GASKESSEL ADMIN-BEREICH
+   ================================ */
+
+#adminButton {
+    position: fixed;
+
+    right: 20px;
+    bottom: 10px;
+
+    width: 24px;
+    height: 24px;
+
+    border: 1px solid black;
+    border-radius: 50%;
+
+    background: white;
+    color: black;
+
+    font-size: 13px;
+    cursor: pointer;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.5;
+
+    transition: opacity 0.2s;
+}
+
+
+/* Zahnrad wird sichtbar, wenn man darüber fährt */
+
+#adminButton:hover {
+    opacity: 1;
+}
+
+
+/* Admin-Menü */
+
+#adminMenu {
+    position: fixed;
+
+    right: 20px;
+    bottom: 47px;
+
+    width: 230px;
+
+    padding: 15px;
+
+    background: white;
+
+    border: 3px solid black;
+
+    z-index: 9998;
+
+    display: none;
+}
+
+
+/* Überschrift */
+
+#adminMenu .adminTitle {
+    font-size: 16px;
+    font-weight: bold;
+
+    margin-bottom: 12px;
+
+    text-align: center;
+}
+
+
+/* Admin-Buttons */
+
+#adminMenu button {
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 10px;
+
+    border: 3px solid black;
+
+    background: white;
+
+    color: black;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* Hover */
+
+#adminMenu button:hover {
+    background: #eeeeee;
+}
+
+
+/* ================================
+   PDF / DRUCK
+   ================================ */
+
+#pdfHeader {
+    display: none;
+}
+
+
+@media print {
+
+    /* Alles ausblenden */
+
+    body * {
+        visibility: hidden;
+    }
+
+
+    /* PDF-Kopf sichtbar */
+
+    #pdfHeader,
+    #pdfHeader * {
+        visibility: visible;
+    }
+
+
+    /* Chat sichtbar */
+
+    #chatBox,
+    #chatBox * {
+        visibility: visible;
+    }
+
+
+    /* PDF-Kopf */
+
+    #pdfHeader {
+        display: block;
+
+        position: absolute;
+
+        left: 0;
+        top: 0;
+
+        width: 100%;
+
+        padding-bottom: 20px;
+
+        background: white;
+
+        text-align: center;
+    }
+
+
+    #pdfHeader h1 {
+        margin: 0;
+
+        font-size: 22px;
+    }
+
+
+    #pdfHeader p {
+        margin-top: 6px;
+
+        font-size: 14px;
+    }
+
+
+    /* Chat unter dem PDF-Kopf */
+
+    #chatBox {
+        position: absolute;
+
+        left: 0;
+
+        top: 90px;
+
+        width: 100%;
+
+        height: auto;
+
+        max-height: none;
+
+        overflow: visible;
+
+        border: none;
+
+        background: white;
+    }
+
+
+    /* Eingabe und Admin komplett ausblenden */
+
+    #chatForm,
+    #adminButton,
+    #adminMenu {
+        display: none !important;
+    }
+
+
+    /* Nachrichten nicht auseinanderreißen */
+
+    .message {
+        break-inside: avoid;
+        page-break-inside: avoid;
+
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+}
